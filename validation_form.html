@@ -1,0 +1,346 @@
+
+<!--Ergasia 3 ---- Create Forms -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Φόρμας συλλογής στοιχείων </title>
+</head>
+<link rel="stylesheet" type="text/css" href="style.css" />
+
+<body>
+
+<div class="container" class="bg-light">
+    
+    <!--Αν αφαιρέσουμε την μεθοδο post εμφανίζονται τα δεδομένα στο πεδίο του url-->
+    <form id="myform" onsubmit="return validateForm();" method="POST"  >
+        <div style="padding-bottom: 2%;">
+        <fieldset>
+            <legend>Θέση μηνύματος *</legend>
+            <label>Παρακαλούμε επιλέξτε θέμα</label>
+            <div class="row">
+                <div class="col-10">
+                    <label for="case">Το μήνυμα σας αφορά: </label>
+                </div>
+                <div class="col-35">
+                    <select name="case">
+                        <option selected>---Επιλέξτε---</option>
+                        <option >Προσωπικά σχόλια</option>
+                        <option >Σχόλια για το έργο</option>
+                        <option >Άλλο</option>
+                    </select>
+                </div>
+            </div>
+         </div>
+        </fieldset>
+
+
+        <fieldset>
+            <legend>Το μήνυμα σας</legend>
+
+        <!--Name-->
+        <div class="row">
+            <div class="col-10">
+                <label for="fname">Όνομα *: </label>
+            </div>
+            <div class="col-35">
+                <input type="text" id="fname" name="firstname" placeholder="Your name.." autocomplete="off" >
+                <span id="username"></span>
+            </div>  
+        </div>
+        
+
+
+        <!--Surname-->
+        <div class="row">
+            <div class="col-10">
+                <label for="lname">Επώνυμο *:</label>
+            </div>
+            <div class="col-35">
+                <input type="text" id="lname" name="lastname" placeholder="Your last name.." autocomplete="off">
+                <span id="surname"></span>
+            </div>
+        </div>
+
+        <!--Sex-->
+        <div class="row">
+            <div class="col-10">
+                <label for="sex">Φύλλο *:</label>
+            </div>
+            <div class="col-35">
+                <input checked type="radio" id="sex" name="sex" value="male">
+                <label for="value=male" >Κος</label>
+                <input type="radio" id="sex" name="sex" value="female">
+                <label for="value=female">Κα</label>
+            </div>
+        </div>
+
+        <!--Telephone Number-->
+        <div class="row">
+            <div class="col-10">
+                <label for="telephone">Τηλέφωνο *:</label>
+            </div>
+            <!--oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"-->
+            <div class="col-35">
+                <!--maxlength=10-->
+                <input type="text" id="telephone" name="Telephone_number" placeholder="Your telephone number.." autocomplete="off" value=210 >
+                <span id="number"></span>
+            </div>
+        </div>
+
+
+        <!--Zip code-->
+        <div class="row">
+            <div class="col-10">
+                <label for="zip">ΤΚ *:</label>
+            </div>
+            <div class="col-35">
+                <input type="text" id="zip" name="zip" placeholder="Your zip code.." autocomplete="off" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" maxlength="5">
+                <span id=zipcode></span>
+            </div>
+        </div>
+
+
+        <!--Address-->
+        <div class="row">
+            <div class="col-10">
+                <label for="address">Διεύθυνση *:</label>
+            </div>
+            <div class="col-35">
+                <input type="text" id="address" name="address" placeholder="Your address.." autocomplete="off">
+                <span id="addr"></span>
+            </div>
+        </div>
+
+
+        <!--City-->
+        <div class="row">
+            <div class="col-10">
+                <label for="mycity">Πόλη *:</label>
+            </div>
+            <div class="col-35">
+                <input type="text" id="mycity" name="city" placeholder="Your city.." autocomplete="off">
+                <span id="city"></span>
+            </div>
+        </div>
+
+        <!--Country-Nomos-->
+        <!--Country-->
+        <div class="row">
+            <div class="col-10">
+                <label for="country">Χώρα *:</label>
+            </div>
+            <div class="col-35">
+                <input type="text" id="country" name="country" placeholder="Your country.." autocomplete="off">
+                <span id=country_id></span>
+            </div>
+        </div>
+
+
+        <!--Email-->
+        <div class="row">
+            <div class="col-10">
+                <label for="email">Email *:</label>
+            </div>
+            <div class="col-35">
+                <input  type="email" id="email" name="email" placeholder="hw_webtech@unipi.gr" required autocomplete="off">
+                <span id="Email"></span>
+            </div>
+        </div>
+
+
+        <!--Message-->
+        <div class="row">
+            <div class="col-10">
+                <label for="message">Το μήνυμα σας *:</label>
+            </div>
+            <div class="col-35">
+                <textarea name="message" rows="3" cols="30" placeholder="Write your message.." required></textarea>
+            </div>
+        </div>
+
+        </fieldset>
+    
+
+
+        <input type="hidden" name="con" id="con" value="0" >
+
+
+        <!--Submit στοιχείων φόρμας-->
+        <input type="submit" name="submit" id="submit" value="Αποστολή μηνύματος" class="btn btn-success">
+
+        <!--Διαγράφει τα δεδομένα που έχουν δοθεί-->
+        <input type="reset" value="Ακύρωση">
+
+    </form>
+</div>
+
+ 
+
+<script>
+
+    document.write("<p style='text-align:center;'><strong>Δημιουργήθηκε από τον φοιτητή : 'Αρη Λαζαρίδη </strong></p>");
+  
+    function validateForm(){
+
+
+        var username = document.getElementById('fname').value;
+        var surname = document.getElementById('lname').value;
+        var zip = document.getElementById('zip').value;
+        var address = document.getElementById('address').value;
+        var city = document.getElementById('mycity').value;
+        var country = document.getElementById('country').value;
+        var email = document.getElementById('email').value;
+        var telephone_num = document.getElementById('telephone').value;
+        
+        var res = telephone_num.charAt(3); //Το χρησιμοποιούμε για να κάνουμε τον έλεγχω του 4ου ψηφίου για το τηλέφωνο
+
+        
+        // Username
+        //ΕΛΕΓΧΟΣ ΟΤΙ ΕΧΕΙ ΣΥΜΠΛΗΡΩΘΕΙ ΤΟ ΠΕΔΙΟ ΚΑΙ ΟΤΙ ΕΙΝΑΙ ΠΕΖΑ ΕΛΛΗΝΙΚΑ
+        if (username == ""){
+            document.getElementById('username').innerHTML = "**Please fill the surname field"
+            return false;
+        }
+
+        if(/^[Α-Ωα-ωίϊΐόάέύϋΰήώ]+$/.test(username))
+        {
+            document.getElementById("con").value="1"; 
+        }
+        else{
+            document.getElementById("con").value="0";
+            document.getElementById('username').innerHTML = "**Μόνο ελληνικά γράμματα (με τόνους και σημεία στίξης) παρακαλώ!";
+            return false;
+        }
+
+        // Surname 
+        //ΕΛΕΓΧΟΣ ΟΤΙ ΔΕΝ ΕΙΝΑΙ ΚΕΝΟ ΤΟ ΠΕΔΙΟ ΚΑΙ ΟΤΙ Ο ΧΡΗΣΤΗΣ ΔΙΝΕΙ ΠΕΖΑ ΕΛΛΗΝΙΚΑ
+        if (surname == ""){
+            document.getElementById('surname').innerHTML = "**Please fill the surname field"
+            return false;
+        }
+        if(/^[Α-Ωα-ωίϊΐόάέύϋΰήώ]+$/.test(surname))
+        {
+            document.getElementById("con").value="1";  
+            
+        }
+        else{
+            document.getElementById("con").value="0";
+            document.getElementById('surname').innerHTML = "**Μόνο ελληνικά γράμματα (με τόνους και σημεία στίξης) παρακαλώ!";
+            return false;
+        }
+
+
+
+        // Zip Code 
+        //ΕΛΕΓΧΟΣ ΟΤΙ Ο ΤΚ ΕΙΝΑΙ 5-ΨΗΦΙΩΝ ΚΑΙ ΔΕΝ ΕΙΝΑΙ ΚΕΝΟ ΤΟ ΠΕΔΙΟ
+
+        if (zip == ""){
+            document.getElementById('zipcode').innerHTML = "**Please fill the Zip code field";
+            return false;
+        }
+        if(zip.length > 5 || zip.length <5){
+            document.getElementById('zipcode').innerHTML = "**Ο ΤΚ πρέπει να είναι 5 ψηφία!";
+            return false;
+        }
+        
+        //Address
+        if (address == ""){
+            document.getElementById('addr').innerHTML = "**Please fill the address field"
+            return false;
+        }
+        else if(/^[Α-Ωα-ωίϊΐόάέύϋΰήώ]+$/.test(address))
+        {
+            document.getElementById("con").value="1";  
+        }
+        else{
+            document.getElementById("con").value="0";
+            document.getElementById('addr').innerHTML = "**Μόνο ελληνικά γράμματα (με τόνους και σημεία στίξης) παρακαλώ!";
+            return false;
+        }
+
+        //City
+        if (city == ""){
+            document.getElementById('city').innerHTML = "**Please fill the city field"
+            return false;
+        }
+        if(/^[Α-Ωα-ωίϊΐόάέύϋΰήώ]+$/.test(city))
+        {
+            document.getElementById("con").value="1";  
+        }
+        else{
+            document.getElementById("con").value="0";
+            document.getElementById('city').innerHTML = "**Μόνο ελληνικά γράμματα (με τόνους και σημεία στίξης) παρακαλώ!";
+            return false;
+        }
+
+        //Country
+        if (country == ""){
+            document.getElementById('country_id').innerHTML = "**Please fill the country field"
+            return false;
+        }
+        if(/^[Α-Ωα-ωίϊΐόάέύϋΰήώ]+$/.test(country))
+        {
+            document.getElementById("con").value="1";  
+        }
+        else{
+            document.getElementById("con").value="0";
+            document.getElementById('country_id').innerHTML = "**Μόνο ελληνικά γράμματα (με τόνους και σημεία στίξης) παρακαλώ!";
+            return false;
+        }
+
+
+
+        //EMAIL
+        /* Validation for the email.
+
+        if (/^[a-zA-Z0-9_.]+[@][a-z]+[.][a-z]{2}$/.test(email)){
+            document.getElementById('Email').innerHTML = "**Το Email πρέπει να είναι της μορφής 'xxx@xxx.xx' !";
+        } 
+
+        */ 
+
+
+
+
+        //Telephone Number
+        //ΕΛΕΓΧΟΣ ΟΤΙ ΤΟ ΠΕΔΙΟ ΔΕΝ ΕΙΝΑΙ ΚΕΝΟ
+
+        if (telephone_num == ""){
+            document.getElementById('number').innerHTML = "**Please fill the telephone number field";
+            return false;
+        }
+
+
+        //ΕΛΕΓΧΟΣ ΟΤΙ ΤΟ 4ο ΨΗΦΙΟ ΔΕΝ ΕΙΝΑΙ ΜΗΔΕΝ
+
+        if (res == 0){
+            document.getElementById('number').innerHTML = "**Το 4ο ψηφίο του τηλεφώνου δεν μπορεί να είναι 0 !" ;
+            return false;
+        }
+
+        //'ΕΛΕΓΧΟΣ ΟΤΙ ΤΟ ΤΗΛΕΦΩΝΟ ΕΧΕΙ 10 ΑΡΙΘΜΟΥΣ
+
+        if(telephone_num.length === 10){
+            document.getElementById("con").value="1";
+        }else{
+            document.getElementById("con").value="0";
+            document.getElementById('number').innerHTML = "**Το τηλέφωνο πρέπει να περιέχει 10 αριθμούς !" ;
+            return false;
+        }
+        
+
+        if (document.getElementById("con").value==="1" && document.getElementById("con").value !== "0"){
+            alert(`Γειά σου ${username} ${surname}. Θα σου αποσταλεί μήνυμα στο ${email} σύντομα.`);
+        }
+
+      
+    }
+    
+    
+</script>
+
+
+</body>
+</html>
